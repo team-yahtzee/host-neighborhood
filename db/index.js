@@ -177,10 +177,20 @@ db.run(`CREATE TABLE if not exists hosts_neighborhood(
   policies VARCHAR, 
   isCanc BOOLEAN,
   cancelation VARCHAR
+)
+`, (err) => {
+  if (err) console.error(err)
+  else console.log('created the hosts table')
+})
+
+db.run(`Create table if not exists Messages(
+  id  INTEGER PRIMARY KEY AUTOINCREMENT, 
+  toHost String, 
+  messageBody String
 )`, (err) => {
   if (err) console.error(err)
-  else console.log('created the table')
-})
+  else console.log('created the Messages table')
+});
 
 // optional 
 faker.seed(193)
@@ -201,3 +211,5 @@ db.close((err) => {
   else console.log('connection with the db closed ')
 });
 
+
+module.exports.db = db; 
