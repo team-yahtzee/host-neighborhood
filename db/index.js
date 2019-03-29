@@ -135,7 +135,6 @@ let cancelation = []
 for (let i = 0; i < 4; i++) {
   cancelation.push(faker.lorem.sentence())
 }
-
 // generate random apartments
 function host_neighborhood(index) {
   this.id = faker.lorem.sentence();
@@ -192,7 +191,7 @@ db.run(`Create table if not exists Messages(
   else console.log('created the Messages table')
 });
 
-// optional 
+// optional: ensures the consistance of the data inserted
 faker.seed(193)
 
   for (let i = 0; i < 100; i++) {
