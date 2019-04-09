@@ -1,64 +1,34 @@
 // import  GoogleMapReact from 'google-map-react';
-import {key} from "../../../../config.js";
-import React from "react";;
-import GoogleMapReact from 'google-map-react';
+import { key } from "../../../../config.js";
+import React from "react";
+import GoogleMapReact from "google-map-react";
 import "babel-polyfill";
 
-
- class MapContainer extends React.Component {
-  
+class MapContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-     
-      showingInfoWindow: false,
-      activeMarker: {},
-      selectedPlace: {},
-    };
-
-    this.onMarkerClick = this.onMarkerClick.bind(this);
-    this.onMapClicked = this.onMapClicked.bind(this);
   }
 
-  onMarkerClick(props, marker, e) {
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
-  }
-
-  onMapClicked(props) {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      });
-    }
-  }
-
-
-
+  // returns simple google map 
   render() {
     let coords = this.props.location;
     return (
-      <div className = "mapContainer">
+      <div className="mapContainer">
         <GoogleMapReact
           bootstrapURLKeys={{ key: key }}
+          
+          // default is neccessary for it to work 
           defaultCenter={{ lat: 21.1744336, lng: 72.7954677 }}
           center={coords}
           zoom={13}
-        >
-        </GoogleMapReact>
-       <span> Exact location information is provided after a booking is confirmed. </span>
-  </div>
+        />
+        <span>
+          {" "}
+          Exact location information is provided after a booking is confirmed.{" "}
+        </span>
+      </div>
     );
   }
 }
 
 export default MapContainer;
-
-
-// GoogleApiWrapper({
-//   apiKey: key
-// })(MapContainer);

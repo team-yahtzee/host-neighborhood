@@ -1,4 +1,4 @@
-// real addresses
+// real addresses used here to access google maps api
 const adresses = [
   '777 Brockton Avenue Abington MA 2351',
   '30 Memorial Drive Avon MA 2322',
@@ -103,12 +103,12 @@ const adresses = [
 ]
 
 const responceTimes = ['an hour', 'a few hours', 'a day', 'a week']
-
 const faker = require('faker')
 let sqlite3 = require('sqlite3').verbose()
 const path = require('path')
-
 const dbPath = path.resolve(__dirname, 'schema.db')
+
+
 
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
@@ -136,6 +136,7 @@ let cancelation = []
 for (let i = 0; i < 4; i++) {
   cancelation.push(faker.lorem.sentence())
 }
+
 // generate random apartments
 function host_neighborhood(index) {
   this.id = faker.finance.account();

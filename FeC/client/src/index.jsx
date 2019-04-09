@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-import {key} from  "../../../config.js";
+import { key } from "../../../config.js";
 
 import Host from "./components/host.jsx";
 import Neighborhood from "./components/neighborhood.jsx";
@@ -19,29 +19,34 @@ class App extends React.Component {
     };
     this.getHost = this.getHost.bind(this);
     this.getProperAddress = this.getProperAddress.bind(this);
-    // this.getPlacesNearby = this.getPlacesNearby.bind(this)
   }
 
   componentDidMount() {
-     this.getHost();
+    this.getHost();
   }
 
+  // grabs id from the current URl -- not ideal but works
   getHost() {
-      let id  = window.location.href.split('/')[3]
-      axios.get(`/host/${id}`)
+    let id = window.location.href.split("/")[3];
+    axios
+      .get(`/host/${id}`)
       .then(host => {
         this.setState(
           {
             host: host.data[0]
-          }, ()=> this.getProperAddress(this.state.host.location))
+          },
+          () => this.getProperAddress(this.state.host.location)
+        );
       })
-       .catch((err)=>{
-        console.error(err)
-      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
+
+  // from the input like '123 street-name ...'  return the address in coordinates
   getProperAddress(address) {
-    console.log(key)
+    console.log(key);
     axios
       .get(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${address
@@ -58,15 +63,6 @@ class App extends React.Component {
         console.error(err);
       });
   }
-
-  // getPlacesNearby(){
-  //   let coordinates = Object.values(this.state.location)
-  //   axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${coordinates}&radius=1500&keyword=cruise&key=${key}`)
-  //   .then((results) => {
-  //     console.log(results)
-  //   })
-  //   .catch((err)=> console.error(err))
-  // }
 
   render() {
     return (

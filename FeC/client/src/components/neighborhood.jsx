@@ -11,6 +11,7 @@ class Neighborhood extends React.Component {
       showingMoreAboutNeighborhood: false
     };
 
+    // these methods are responsible for slide-downs [e.g show more info]
     this.showMoreRules = this.showMoreRules.bind(this);
     this.showMorePolicies = this.showMorePolicies.bind(this);
     this.showMoreAboutNeighborhood = this.showMoreAboutNeighborhood.bind(this);
@@ -66,6 +67,7 @@ class Neighborhood extends React.Component {
 
           <p>{this.props.host.neighborhoodDescr}</p>
 
+          {/*  conditional rendering for more info */}
           {!this.state.showingMoreAboutNeighborhood ? (
             <span
               className="showMoreOrLess"
@@ -89,7 +91,9 @@ class Neighborhood extends React.Component {
                   </li>
                 );
               })}
+
               <br />
+
               <span
                 className="showMoreOrLess"
                 onClick={this.showLessAboutNeighborhood}
@@ -106,6 +110,7 @@ class Neighborhood extends React.Component {
         </div>
 
         <div>
+          {/* part responsible for rendering map */}
           <div>
             <MapContainer
               className="mapContainer"
@@ -181,8 +186,6 @@ class Neighborhood extends React.Component {
                   </span>
                 ) : (
                   <div>
-                    {/* <p>
-                  {this.props.host.neighborhoodDescr} */}
                     <br />
                     <span
                       className="showMoreOrLess"
@@ -197,7 +200,6 @@ class Neighborhood extends React.Component {
                       <br />
                       Hide ^
                     </span>
-                    {/* </p> */}
                   </div>
                 )}
               </div>

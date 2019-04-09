@@ -7,7 +7,7 @@ import "moment-timezone";
 import Chat from "../components/chat.jsx";
 import ReactModal from "react-modal";
 
-ReactModal.setAppElement('#app');
+ReactModal.setAppElement("#app");
 
 class Host extends React.Component {
   constructor(props) {
@@ -34,6 +34,7 @@ class Host extends React.Component {
     return (
       <div className="mainDiv">
         <img className="avatar" src={this.props.host.avatar} />
+
         <div className="hostedBy">
           <h2>Hosted by {this.props.host.name}</h2>
           <h5 className="locationOfTheHost">
@@ -89,6 +90,7 @@ class Host extends React.Component {
             <br />
           )}
         </div>
+
         <div>
           <p className="mostOfTheTextOnPage">
             Hi! My name is {this.props.host.name}.
@@ -113,13 +115,17 @@ class Host extends React.Component {
           <br />
           <br />
         </div>
+
         <div className="divAroundThatButton">
-          <button className="contactHostButton" onClick={()=>this.openChat()}>
+          <button className="contactHostButton" onClick={() => this.openChat()}>
             Contact host
           </button>
           <div>
             <ReactModal isOpen={this.state.chatVisibility} contentLabel="Chat">
-              <Chat host = {this.props.host.name} handleCloseChatX = {this.closeChat}/>
+              <Chat
+                host={this.props.host.name}
+                handleCloseChatX={this.closeChat}
+              />
             </ReactModal>
           </div>
         </div>
