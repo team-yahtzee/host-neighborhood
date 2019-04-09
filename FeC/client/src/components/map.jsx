@@ -1,13 +1,9 @@
 // import  GoogleMapReact from 'google-map-react';
-import key from "../../../config.js";
-import React from "react";
-import axios from "axios";
-
+import {key} from "../../../../config.js";
+import React from "react";;
 import GoogleMapReact from 'google-map-react';
 import "babel-polyfill";
-// import "../style.css";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
  class MapContainer extends React.Component {
   
