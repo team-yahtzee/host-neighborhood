@@ -109,6 +109,10 @@ const path = require('path')
 const dbPath = path.resolve(__dirname, 'schema.db')
 
 
+const ids =[];
+for (let i = 0; i<100; i++){
+  ids.push(i)
+}
 
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
@@ -139,7 +143,7 @@ for (let i = 0; i < 4; i++) {
 
 // generate random apartments
 function host_neighborhood(index) {
-  this.id = faker.finance.account();
+  this.id = ids[index];
   this.name = faker.name.findName();
   this.joined = faker.date.past();
   this.location = adresses[index];
@@ -169,7 +173,7 @@ function host_neighborhood(index) {
 }
 
 db.run(`CREATE TABLE if not exists hosts_neighborhood(
-  id STRING,
+  id INTEGER UNIQUE,
   name VARCHAR, 
   joined DATE, 
   location STRING,
@@ -199,28 +203,33 @@ db.run(`CREATE TABLE if not exists hosts_neighborhood(
 })
 
 db.run(`Create table if not exists Messages(
-  id  INTEGER PRIMARY KEY AUTOINCREMENT, 
+  id INTEGER PRIMARY KEY AUTOINCREMENT, 
   toHost String, 
   messageBody String
 )`, (err) => {
   if (err) console.error(err);
-  else console.log('created the Messages table');
+  else {
+    console.log('created the Messages table')
+    for (let i = 0; i < 100; i++) {
+      let entry = new host_neighborhood(i);
+      db.run(`INSERT OR IGNORE INTO hosts_neighborhood  (id,name,joined,location,city, numberOfReviews, numberOfReferences, isVerified,isSuper,responseRate,avatar, responseTime,language
+         ,email, phoneNum,commuteTimeAvg,commutePriceAvg, localCurrency,neighborhoodDescr,policies,isCanc, cancelation, locationsNearby) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) `, Object.values(entry), (err) => {
+        if (err) console.log(err, 'Error occured on insert')
+        else {
+          console.log('inserted successfully');
+        }
+      })
+    }
+  };
 });
 
 // optional: ensures the consistance of the data inserted
 faker.seed(193)
 
-for (let i = 0; i < 100; i++) {
-  let entry = new host_neighborhood(i);
-  db.run(`INSERT INTO hosts_neighborhood (id,name,joined,location,city, numberOfReviews, numberOfReferences, isVerified,isSuper,responseRate,avatar, responseTime,language
-     ,email, phoneNum,commuteTimeAvg,commutePriceAvg, localCurrency,neighborhoodDescr,policies,isCanc, cancelation, locationsNearby) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, Object.values(entry), (err) => {
-    if (err) console.log(err, 'Error occured on insert')
-    else {
-      console.log('inserted successfully');
-    }
-  })
-}
 
+
+//select * from hosts_neighborhood
+//schema.db
 
 
 // db.close((err) => {
