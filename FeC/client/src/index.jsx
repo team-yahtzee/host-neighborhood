@@ -47,7 +47,6 @@ class App extends React.Component {
 
   // from the input like '123 street-name ...'  return the address in coordinates
   getProperAddress(address) {
-    console.log(key);
     axios
       .get(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${address

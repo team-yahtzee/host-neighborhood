@@ -10,9 +10,6 @@ class MapContainer extends React.Component {
   }
 
   // returns simple google map 
-  componentDidMount(){
-    console.log(this.props.location)
-  }
   render() {
     let coords = this.props.location;
     return (
@@ -25,17 +22,6 @@ class MapContainer extends React.Component {
           center={coords}
           zoom={13}
           yesIWantToUseGoogleMapApiInternals={true}
-          onGoogleApiLoaded={(map, maps) =>
-          new window.google.maps.Circle({
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#484848',
-            fillOpacity: 0.3,
-            map:map,
-            center: coords,
-            radius: 275,
-          })}
         />
         <span>
           {" "}
