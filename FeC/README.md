@@ -1,6 +1,3 @@
-<<<<<<< HEAD
 
-# host-neighborhood-proxy
-=======
-host-neighborhood description components
+# host-neighborhood description components
 
