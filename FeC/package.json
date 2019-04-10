@@ -34,6 +34,7 @@
     "faker": "^4.1.0",
     "google-map-react": "^1.1.4",
     "google-maps-react": "^2.0.2",
+    "gzip": "^0.1.0",
     "mocha": "^6.0.2",
     "moment-timezone": "^0.5.23",
     "path": "^0.12.7",
