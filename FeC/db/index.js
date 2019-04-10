@@ -237,5 +237,4 @@ faker.seed(193)
 //   else console.log('connection with the db closed ');
 // });
 
-
 module.exports.db = db;
