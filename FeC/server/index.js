@@ -4,9 +4,12 @@ const db = require('../db/index.js').db
 const parser = require('body-parser')
 const path = require('path')
 const cors = require('cors');
+const expressStaticGzip = require('express-static-gzip');
 
 app.use(parser.json())
-app.use('/:id', express.static(path.join(__dirname , '../client/dist')));
+app.use('/:id', expressStaticGzip(path.join(__dirname , '../client/dist'), {
+	enableBrotli: true
+   }));
 
 const headers = {
     'Access-Control-Allow-Credentials' : true,
@@ -65,5 +68,3 @@ let port = 3005
 app.listen(port, () => {
     console.log(`app is listening on port ${port}`)
 })
-
-
