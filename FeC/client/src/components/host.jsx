@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import axios from "axios";
 import "../style.css";
 import Moment from "react-moment";
 import "moment-timezone";
@@ -44,13 +43,9 @@ class Host extends React.Component {
         </div>
 
         <div className="littleIcons">
-          <div>
-            <img
-              className="icons"
-              src="https://img.icons8.com/metro/18/000000/christmas-star.png"
-            />{" "}
+          <div> 
             {this.props.host.numberOfReviews}{" "}
-            <span className="iconText"> Reviews </span>
+            <span className="iconText">★  Reviews </span>
           </div>
 
           <div>

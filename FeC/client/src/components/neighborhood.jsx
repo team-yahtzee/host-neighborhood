@@ -1,6 +1,6 @@
-import React from "react";
-import MapContainer from "../components/map.jsx";
-import faker from "faker";
+import React, {Suspense}  from "react";
+// import MapContainer from "../components/map.jsx";
+const MapContainer = React.lazy(() => import("../components/map.jsx"));
 
 class Neighborhood extends React.Component {
   constructor(props) {
@@ -112,10 +112,12 @@ class Neighborhood extends React.Component {
         <div>
           {/* part responsible for rendering map */}
           <div>
-            <MapContainer
-              className="mapContainer"
-              location={this.props.location}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+              <MapContainer
+                className="mapContainer"
+                location={this.props.location}
+              />
+            </Suspense>
           </div>
 
           <div className="cancelationsPolicies">
