@@ -7,9 +7,7 @@ const cors = require('cors');
 const expressStaticGzip = require('express-static-gzip');
 
 app.use(parser.json())
-app.use('/:id', expressStaticGzip(path.join(__dirname, '../client/dist'), {
-	enableBrotli: true
-}));
+app.use('/:id', express.static(path.join(__dirname, '../client/dist')));
 
 const headers = {
 	'Access-Control-Allow-Credentials': true,
