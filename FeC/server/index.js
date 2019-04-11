@@ -43,7 +43,7 @@ app.get('/find/:address', (req, res) => {
 })
 
 app.get('/contact/:host', (req, res) => {
-	let host = JSON.stringify(req.params.host.split('+').join(' '))
+	let host = JSON.stringify(req.params.host.split('%').join(' '))
 	db.all(`select email, phoneNum from hosts_neighborhood where name = ${host}`, (err, data) => {
 		if (err) {
 			console.error(err, ' <-- Error occured on getting the host contact info');
