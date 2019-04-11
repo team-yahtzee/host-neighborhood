@@ -1,12 +1,13 @@
 
 body{
 	margin: 117.5px;
+	margin-top: -100px;
 	max-width: 696px;
 	width:  696px;
 	padding: 24px;
-	color: rgb(72, 72, 72);
+	color: #484848;;
 	display: block;
-	line-height: 20.02px;
+	line-height: 1.375em;
 	text-size-adjust: 100%;
 	box-sizing: border-box;
 	object-position: 50% 50%;
@@ -14,6 +15,7 @@ body{
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 1.375em;
+	-webkit-font-smoothing: antialiased;
 }
 
  .mainDivNeighborhood {
@@ -28,7 +30,7 @@ body{
 	object-position: 50% 50%;
 } 
 
-.avatar {
+.hostAvatar {
 	width: 20%;
 	height: 20%;
 	background-color: #D8D8D8;
@@ -37,9 +39,9 @@ body{
 	border-color: #ffffff;
 	width: 80px;
 	height: 80px;
-	position: absolute;
-	left: 60%;
-	top: 170px;
+	position: relative;
+	left: 90%;
+	top: 110px;
 }
 
 
@@ -54,6 +56,8 @@ body{
 	padding-top: 2px;
 	padding-bottom: 2px;
 	margin-bottom: 8px;
+	position: relative;
+    left: 5px;
 	margin-block-start: 0.83em;
 	margin-block-end: 0.83em;
 	margin-inline-start: 0px;
@@ -62,10 +66,13 @@ body{
 
 .littleIcons {
 	margin-right: 16px;
+	margin-top: -40px;
 	padding: 2px;
 	display: flex;
 	align-content: center;
 	text-align: center;
+	position: relative;
+    left: 0.5%;
 }
 
 
@@ -86,7 +93,7 @@ body{
 }
 
 .locationOfTheHost {
-	margin: 0px;
+	margin-top: -20px;
 	word-wrap: break-word;
 	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
 	font-size: 16px;
@@ -105,6 +112,20 @@ body{
 	color: #484848;
 }
 
+.linkToLearnMore{
+	color: #008489;
+	margin: 0px;
+	word-wrap: break-word;
+	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.375em;
+    text-decoration: none
+}
+
+.linkToLearnMore:visited{
+	text-decoration: none
+}
 .contactHostButton {
 	border-radius: 4px;
 	font-size: 14px;
@@ -155,10 +176,10 @@ body{
 }
 
 
-hr {
-	border-bottom-width: 1px;
-	border-color: #EBEBEB;
-	opacity: 0.3;
+.hostHr {
+	border-bottom-width: 1px !important;
+	border-color: #EBEBEB !important;
+	opacity: 0.3 !important;
 }
 
 .mapContainer {

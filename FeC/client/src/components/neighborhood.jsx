@@ -1,7 +1,7 @@
 import React, {Suspense}  from "react";
 // import MapContainer from "../components/map.jsx";
 const MapContainer = React.lazy(() => import("../components/map.jsx"));
-
+import "../style.css";
 class Neighborhood extends React.Component {
   constructor(props) {
     super(props);
@@ -121,6 +121,7 @@ class Neighborhood extends React.Component {
           </div>
 
           <div className="cancelationsPolicies">
+            <hr/>
             <h2>Policies</h2>
 
             <h3>House rules</h3>
@@ -129,7 +130,7 @@ class Neighborhood extends React.Component {
 
             {!this.state.showingMorePolicies ? (
               <span className="showMoreOrLess" onClick={this.showMorePolicies}>
-                Read more about the policies v <br />
+                Read all rules v <br />
               </span>
             ) : (
               <p>
@@ -143,7 +144,7 @@ class Neighborhood extends React.Component {
                 </span>
               </p>
             )}
-
+            <hr/>
             <h3>Cancellations</h3>
 
             {this.props.host.isCanc ? (

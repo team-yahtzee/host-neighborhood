@@ -32,10 +32,10 @@ class Host extends React.Component {
   render() {
     return (
       <div className="mainDiv">
-        <img className="avatar" src={this.props.host.avatar} />
+        <img className="hostAvatar" src={this.props.host.avatar} />
 
         <div className="hostedBy">
-          <h2>Hosted by {this.props.host.name}</h2>
+          <h3>Hosted by {this.props.host.name}</h3>
           <h5 className="locationOfTheHost">
             {this.props.host.city} · Joined in{" "}
             <Moment format="MMM YYYY">{this.props.host.joined}</Moment>
@@ -43,11 +43,7 @@ class Host extends React.Component {
         </div>
 
         <div className="littleIcons">
-          <div> 
-            {this.props.host.numberOfReviews}{" "}
-            <span className="iconText">★  Reviews </span>
-          </div>
-
+            <span className="iconText">★  {this.props.host.numberOfReviews}{" "} Reviews </span>
           <div>
             <img
               className="icons"
@@ -75,11 +71,11 @@ class Host extends React.Component {
         <div>
           {this.props.host.isSuper ? (
             <div className="mostOfTheTextOnPage">
-              <hr />
+              <hr className = 'hostHr'/>
               <b> {this.props.host.name} is a Superhost </b>· Superhosts are
               experienced, highly rated hosts who are committed to providing
               great stays for guests.
-              <hr />
+              <hr className = 'hostHr'/>
             </div>
           ) : (
             <br />
@@ -125,13 +121,13 @@ class Host extends React.Component {
           </div>
         </div>
 
-        <hr />
+        <hr className = 'hostHr' />
         <p className="mostOfTheTextOnPage">
           <b>Always communicate through Airbnb </b>· To protect your payment,
           never transfer money or communicate outside of the Airbnb website or
-          app. Learn more v
+          app. <a className = 'linkToLearnMore' href = 'https://www.airbnb.com/help/article/199/what-should-i-do-if-someone-asks-me-to-pay-outside-of-the-airbnb-website'>Learn more </a>
         </p>
-        <hr />
+        <hr className = 'hostHr'/>
       </div>
     );
   }
