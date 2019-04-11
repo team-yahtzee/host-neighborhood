@@ -1,5 +1,5 @@
 var path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 
@@ -30,20 +30,20 @@ module.exports = {
 			}
 		]
 	},
-	optimization: {
-		minimizer: [new UglifyJsPlugin()],
-		namedModules: false,
-		namedChunks: false,
-		nodeEnv: 'production',
-		flagIncludedChunks: true,
-		occurrenceOrder: true,
-		sideEffects: true,
-		usedExports: true,
-		concatenateModules: true,
-		noEmitOnErrors: true,
-		checkWasmTypes: true,
-		minimize: true,
-	},
+	// optimization: {
+	// 	minimizer: [new UglifyJsPlugin()],
+	// 	namedModules: false,
+	// 	namedChunks: false,
+	// 	nodeEnv: 'production',
+	// 	flagIncludedChunks: true,
+	// 	occurrenceOrder: true,
+	// 	sideEffects: true,
+	// 	usedExports: true,
+	// 	concatenateModules: true,
+	// 	noEmitOnErrors: true,
+	// 	checkWasmTypes: true,
+	// 	minimize: true,
+	// },
 	plugins: [
 		new CompressionPlugin({
 		filename: '[path].gz[query]',
