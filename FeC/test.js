@@ -1,33 +1,28 @@
-var chai = require('chai');
-var expect = chai.expect;
-var chaiHttp = require('chai-http');
-var request = require('supertest');
-var mocha = require('mocha')
+var path = require('path');
+var SRC_DIR = path.join(__dirname, '/client/src');
+var DIST_DIR = path.join(__dirname, '/client/dist');
 
-chai.use(chaiHttp)
-chai.use(require('chai-things'))
+module.exports = {
+	entry: `${SRC_DIR}/index.jsx`,
+	output: {
+		filename: 'bundle.js',
+		path: DIST_DIR
+	},
+	module: {
+		rules: [{
+				test: /\.jsx?/,
+				include: SRC_DIR,
+				use: 'babel-loader'
+			},
 
-
-
-  describe('/find/', function () {
-    // Write your tests here!
-    it('succeeds silently!', function() {  
-      chai.request('/find/')
-      .get('/3222+State+Rt+11%2C+Malone+NY+12953')
-      .end(function(err, res) {
-        expect(res).to.have.status(200);
-      });
-    });
-
-  });
-
-  describe('/contact', function () {
-    it('succeeds silently!', function() {  
-      chai.request('/contact')
-      .get('/Neha+Adams/message')
-      .end(function(err, res) {
-        expect(res).to.have.status(404);
-      });
-    });
-
-  });
+			{
+				test: /\.css/,
+				include: SRC_DIR,
+				use: [
+					'style-loader',
+					'css-loader'
+				]
+			}
+		]
+	}
+}

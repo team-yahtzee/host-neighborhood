@@ -1,8 +1,9 @@
 {
 	"presets": [
-		["env", {
-			"modules": false
-		}], "react"
+		["env"], "react"
 	],
 	"plugins": ["syntax-dynamic-import"]
 }
+// //, {
+// 	"modules": false
+// }

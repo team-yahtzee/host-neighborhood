@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import { key } from "../../../config.js";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Host from "./components/host.jsx";
 import Neighborhood from "./components/neighborhood.jsx";
@@ -10,7 +9,7 @@ import "babel-polyfill";
 
 import "./style.css";
 
-class App extends React.Component {
+export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,3 +75,4 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById("app"));
+
