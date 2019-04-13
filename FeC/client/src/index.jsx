@@ -5,9 +5,8 @@ import { key } from "../../../config.js";
 
 import Host from "./components/host.jsx";
 import Neighborhood from "./components/neighborhood.jsx";
-import "babel-polyfill";
+import '../dist/style.css'
 
-import "./style.css";
 
 export class App extends React.Component {
   constructor(props) {

@@ -1,18 +1,35 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "../style.css";
 import Moment from "react-moment";
-import "moment-timezone";
 import Chat from "../components/chat.jsx";
 import ReactModal from "react-modal";
+import '../../dist/style.css'
 
 ReactModal.setAppElement("#app");
+
+
+
+/////////////////
+///  Host  //////
+/////////////////
+// Following componet produces the first part of the project page
+// Contains information about the host icluding location, # of reviews, quick info (e.g language) and includes the Chat component module
+
+/////////////////
+///  Props    ///
+/////////////////
+// The only prop it receives is the host object 
+
+/////////////////
+///  Methods  ///
+/////////////////
+/// Support of the Chat component --> close/open chat [ e.g ReactModal isOpen={this.state.chatIsOpen} ]
+
 
 class Host extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chatVisibility: false
+      chatIsOpen: false
     };
     this.openChat = this.openChat.bind(this);
     this.closeChat = this.closeChat.bind(this);
@@ -20,30 +37,39 @@ class Host extends React.Component {
 
   openChat() {
     this.setState({
-      chatVisibility: true
+      chatIsOpen: true
     });
   }
 
   closeChat() {
     this.setState({
-      chatVisibility: false
+      chatIsOpen: false
     });
   }
+
+
   render() {
     return (
       <div className="mainDiv">
+
+
         <img className="hostAvatar" src={this.props.host.avatar} />
 
+
+
         <div className="hostedBy">
-          <h3>Hosted by {this.props.host.name}</h3>
+          <span className = "allSpans">Hosted by {this.props.host.name}</span>
           <h5 className="locationOfTheHost">
             {this.props.host.city} · Joined in{" "}
-            <Moment format="MMM YYYY">{this.props.host.joined}</Moment>
+            {/* displays the time since the host joined the platform (data included in the props host object)*/}
+            <Moment format="MMM YYYY">{this.props.host.joined}</Moment> 
           </h5>
         </div>
 
+
+
         <div className="littleIcons">
-            <span className="iconText">★  {this.props.host.numberOfReviews}{" "} Reviews </span>
+            <span className="iconText">★ {this.props.host.numberOfReviews}{" "} Reviews </span>
           <div>
             <img
               className="icons"
@@ -55,6 +81,9 @@ class Host extends React.Component {
             </span>
           </div>
 
+
+
+          {/* checks whether the hosts are verified. In case if they are displays the verifieed icon */}
           {this.props.host.isVerified ? (
             <div>
               <img
@@ -68,6 +97,9 @@ class Host extends React.Component {
           )}
         </div>
 
+
+        
+       {/* checks whether the hosts are a superhost. In case if they are displays the superhost text */}
         <div>
           {this.props.host.isSuper ? (
             <div className="mostOfTheTextOnPage">
@@ -82,16 +114,21 @@ class Host extends React.Component {
           )}
         </div>
 
+
+        {/* displays hosts intro text */}
         <div>
           <p className="mostOfTheTextOnPage">
             Hi! My name is {this.props.host.name}.
             {this.props.host.neighborhoodDescr}
           </p>
         </div>
+
         <br />
-        <div className="mostOfTheTextOnPage">
+
+    
+        <div className="quickInfoAboutHost">
           <span>
-            Languages: <b>{this.props.host.language}</b>
+            Language: <b>{this.props.host.language}</b>
           </span>
           <br />
           <br />
@@ -107,12 +144,16 @@ class Host extends React.Component {
           <br />
         </div>
 
-        <div className="divAroundThatButton">
+
+
+        <div className="divAroundContactButton">
           <button className="contactHostButton" onClick={() => this.openChat()}>
             Contact host
           </button>
+
+        
           <div>
-            <ReactModal isOpen={this.state.chatVisibility} contentLabel="Chat">
+            <ReactModal isOpen={this.state.chatIsOpen} contentLabel="Chat">
               <Chat
                 host={this.props.host.name}
                 handleCloseChatX={this.closeChat}
@@ -122,12 +163,17 @@ class Host extends React.Component {
         </div>
 
         <hr className = 'hostHr' />
+
+        {/* Additional info message  */}
         <p className="mostOfTheTextOnPage">
           <b>Always communicate through Airbnb </b>· To protect your payment,
           never transfer money or communicate outside of the Airbnb website or
           app. <a className = 'linkToLearnMore' href = 'https://www.airbnb.com/help/article/199/what-should-i-do-if-someone-asks-me-to-pay-outside-of-the-airbnb-website'>Learn more </a>
         </p>
+
+
         <hr className = 'hostHr'/>
+
       </div>
     );
   }

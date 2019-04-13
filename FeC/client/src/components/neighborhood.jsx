@@ -1,10 +1,30 @@
 import React, {Suspense}  from "react";
-// import MapContainer from "../components/map.jsx";
+import '../../dist/style.css'
+
+// supports async import of the container which is not visible for user on initial render
 const MapContainer = React.lazy(() => import("../components/map.jsx"));
-import "../style.css";
+
+//////////////////
+/// Neighborhood//
+//////////////////
+// Following component renders a Neighborhood description. Including the location [via Googlemaps API and info about rules and policies of the apt]
+
+/////////////////
+///  Props    ///
+/////////////////
+// The only prop it receives is the host object 
+
+
+/////////////////
+///  Methods  ///
+/////////////////
+// Has few similar methods: [showingMoreRules, showingMorePolicies,  showingMoreAboutNeighborhood] responsible for conditional
+// rendering (e.g showing more or less information dropdowns)
+
 class Neighborhood extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       showingMoreRules: false,
       showingMorePolicies: false,
@@ -21,6 +41,7 @@ class Neighborhood extends React.Component {
     this.showLessAboutNeighborhood = this.showLessAboutNeighborhood.bind(this);
   }
 
+  /////// Rules ////////
   showMoreRules() {
     this.setState({
       showingMoreRules: true
@@ -32,6 +53,9 @@ class Neighborhood extends React.Component {
       showingMoreRules: false
     });
   }
+
+
+   /////// Policies ////////
   showMorePolicies() {
     this.setState({
       showingMorePolicies: true
@@ -44,6 +68,8 @@ class Neighborhood extends React.Component {
     });
   }
 
+  
+   /////// More about Neighborhood  ////////
   showMoreAboutNeighborhood() {
     this.setState({
       showingMoreAboutNeighborhood: true
@@ -55,10 +81,15 @@ class Neighborhood extends React.Component {
       showingMoreAboutNeighborhood: false
     });
   }
+
+
   render() {
     return (
+
       <div className="mainDivNeighborhood">
+
         <div style={{ marginTop: "-50px" }}>
+
           <h2> The neighborhood </h2>
 
           <span>
@@ -69,19 +100,27 @@ class Neighborhood extends React.Component {
 
           {/*  conditional rendering for more info */}
           {!this.state.showingMoreAboutNeighborhood ? (
+
+            // initial page render the info is hidden
             <span
               className="showMoreOrLess"
               onClick={this.showMoreAboutNeighborhood}
             >
-              Read more about the neighborhood v <br />
+              Read more about the neighborhood ▿ <br />
             </span>
+
           ) : (
+            // after clicking 'Show more' renders following: 
             <p>
               <span>
-                <b>Getting around</b>
+                <b>Getting around</b> 
+                {/* showing the places nearby, how long it takes to get there ang how much it costs
+                Does not make any request.. data is random */}
               </span>
+
               <br />
               <br />
+
               {this.props.host.locationsNearby.split(" ").map(place => {
                 return (
                   <li>
@@ -90,6 +129,7 @@ class Neighborhood extends React.Component {
                     {this.props.host.localCurrency}{" "}
                   </li>
                 );
+
               })}
 
               <br />
@@ -103,16 +143,13 @@ class Neighborhood extends React.Component {
             </p>
           )}
 
-          <a href="#" className="showMoreOrLess">
-            {" "}
-            {this.props.host.name}'s Guides book
-          </a>
         </div>
 
         <div>
           {/* part responsible for rendering map */}
           <div>
-            <Suspense fallback={<div>Loading...</div>}>
+             {/* if component is not yet loaded shows 'Loading..' message */}
+            <Suspense fallback={<div>Loading...</div>}> 
               <MapContainer
                 className="mapContainer"
                 location={this.props.location}
@@ -123,51 +160,63 @@ class Neighborhood extends React.Component {
           <div className="cancelationsPolicies">
             <hr/>
             <h2>Policies</h2>
-
-            <h3>House rules</h3>
+              <h3>House rules</h3>
 
             <p>{this.props.host.policies}</p>
 
             {!this.state.showingMorePolicies ? (
+
               <span className="showMoreOrLess" onClick={this.showMorePolicies}>
-                Read all rules v <br />
+                Read all rules ▿ <br />
               </span>
+
             ) : (
+
               <p>
                 {this.props.host.policies}
                 <br />
+
                 <span
                   className="showMoreOrLess"
                   onClick={this.showLessPolicies}
                 >
                   Hide ^
                 </span>
+
               </p>
             )}
-            <hr/>
-            <h3>Cancellations</h3>
 
+            <hr/>
+
+
+            <h3>Cancellations</h3>
+             {/* bellow checks whether host has strict cancelation rules */}
             {this.props.host.isCanc ? (
+
               <div>
+
                 <span>
                   <b>Strict - Free cancellation for 48 hours</b>
                 </span>
+
                 <p>
                   After that, cancel up to 7 days before check-in and get a 50%
                   refund, minus the service fee.
                 </p>
+
+
                 {!this.state.showingMoreRules ? (
+
                   <span className="showMoreOrLess" onClick={this.showMoreRules}>
-                    Read more about the rules v <br />
+                    Read more about the rules ▿ <br />
                   </span>
+
                 ) : (
+
                   <div>
                     {this.props.host.neighborhoodDescr}
                     <br />
-                    <span
-                      className="showMoreOrLess"
-                      onClick={this.showlessRules}
-                    >
+
                       <a
                         className="showMoreOrLess"
                         href="https://www.airbnb.com/home/cancellation_policies?guest_fee_policy=grace_period_48_hours#strict-with-grace-period"
@@ -175,21 +224,34 @@ class Neighborhood extends React.Component {
                         Learn more
                       </a>
                       <br />
+
+                      <span
+                      className="showMoreOrLess"
+                      onClick={this.showLessRules}
+                    >
                       Hide ^
                     </span>
                   </div>
+
                 )}
               </div>
             ) : (
+
               <div>
                 <span>Free cancellation at any time</span>
+
                 {!this.state.showingMoreRules ? (
+
                   <span className="showMoreOrLess" onClick={this.showMoreRules}>
-                    Read more about the rules v <br />
+                    Read more about the rules ▿ <br />
                   </span>
+
                 ) : (
+
                   <div>
+
                     <br />
+
                     <span
                       className="showMoreOrLess"
                       onClick={this.showlessRules}
@@ -203,7 +265,9 @@ class Neighborhood extends React.Component {
                       <br />
                       Hide ^
                     </span>
+
                   </div>
+
                 )}
               </div>
             )}

@@ -1,5 +1,5 @@
 
-body{
+/* body{
 	margin: 117.5px;
 	margin-top: -100px;
 	max-width: 696px;
@@ -16,9 +16,13 @@ body{
 	font-weight: 400;
 	line-height: 1.375em;
 	-webkit-font-smoothing: antialiased;
-}
+} */
 
+ .mainDiv{
+	max-width: 648px;
+ }
  .mainDivNeighborhood {
+    max-width: 80%;
 	margin-top: 50px;
 	color: rgb(72, 72, 72);
 	display: block;
@@ -28,6 +32,10 @@ body{
 	text-size-adjust: 100%;
 	box-sizing: border-box;
 	object-position: 50% 50%;
+	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
 } 
 
 .hostAvatar {
@@ -64,7 +72,12 @@ body{
 	margin-inline-end: 0px;
 }
 
+.icons{
+	position: relative;
+    left: 4px;
+}
 .littleIcons {
+	color: #484848;
 	margin-right: 16px;
 	margin-top: -40px;
 	padding: 2px;
@@ -72,18 +85,26 @@ body{
 	align-content: center;
 	text-align: center;
 	position: relative;
-    left: 0.5%;
+	left: 0.5%;
+	word-wrap: break-word;
+	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.375em;
 }
 
 
 .iconText {
-	text-align: center;
-	display: inline-flex;
+    text-align: center;
+    display: inline-flex;
+    position: relative;
+    top: -2px;
 }
 
 .referencesText {
-	position: relative;
-	bottom: 2.5px;
+		position: relative;
+		bottom: 2.5px;
+		left: -3px;
 }
 
 .verifiedText {
@@ -100,6 +121,17 @@ body{
 	font-weight: 400;
 	line-height: 1.375em;
 	color: #484848;
+}
+
+.quickInfoAboutHost{
+	text-size-adjust: 100%;
+    box-sizing: border-box;
+    object-position: 50% 50%;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    line-height: 12px;
 }
 
 .mostOfTheTextOnPage {
@@ -132,7 +164,6 @@ body{
 	line-height: 22px;
 	letter-spacing: normal;
 	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
-	text-transform: undefined;
 	padding-top: 6px;
 	padding-bottom: 6px;
 	font-weight: 600;
@@ -146,7 +177,7 @@ body{
 	color: #008489;
 }
 
-.divAroundThatButton {
+.divAroundContactButton {
 	margin-top: 16px;
 	margin-bottom: 24px;
 }
@@ -155,14 +186,20 @@ body{
 .cancelationsPolicies {
 	margin-top: 360px;
 	padding-top: 20px;
-	color: rgb(72, 72, 72);
 	display: inline-block;
 	height: 506px;
 	width: 648px;
-	line-height: 20.02px;
 	text-size-adjust: 100%;
 	box-sizing: border-box;
 	object-position: 50% 50%;
+	max-width: 696px;
+	width:  696px;
+	color: #484848;;
+	line-height: 1.375em;
+	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
 }
 
 .showMoreOrLess {
@@ -244,4 +281,13 @@ form {
 
 .inputForMessageToSend {
 	height: 20px
+}
+
+.allSpans {display: block;
+font-size: 1.17em;
+margin-block-start: 1em;
+margin-block-end: 1em;
+margin-inline-start: 0px;
+margin-inline-end: 0px;
+font-weight: bold;
 }

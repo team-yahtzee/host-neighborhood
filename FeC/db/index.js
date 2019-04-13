@@ -102,18 +102,22 @@ const adresses = [
   '1201 Rt 300, Newburgh NY 12550'
 ]
 
-const responceTimes = ['an hour', 'a few hours', 'a day', 'a week']
+const responceTimes = ['an hour', 'a few hours', 'a day', 'a week'] // in order to render grammatically correct message
+
 const faker = require('faker')
-let sqlite3 = require('sqlite3').verbose()
+const sqlite3 = require('sqlite3').verbose()
 const path = require('path')
-const dbPath = path.resolve(__dirname, 'schema.db')
+const dbPath = path.join(__dirname, 'schema.db')
 
 
-const ids =[];
-for (let i = 0; i<100; i++){
+// creates a range array
+const ids = [];
+for (let i = 0; i < 100; i++) {
   ids.push(i)
 }
 
+
+// creates a connection to the database for the export
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.log(err, 'err occured on connection')
@@ -123,11 +127,12 @@ const db = new sqlite3.Database(dbPath, (err) => {
 })
 
 
-let thingsNearby = []
 // creates random things around the apartment 
+let thingsNearby = []
 for (let i = 0; i < 4; i++) {
   thingsNearby.push(faker.random.word())
 }
+
 
 //generate random sentences for policies
 let policies = []
@@ -135,11 +140,13 @@ for (let i = 0; i < 4; i++) {
   policies.push(faker.lorem.sentence())
 }
 
+
 //generate random sentences for cancelation
 let cancelation = []
 for (let i = 0; i < 4; i++) {
   cancelation.push(faker.lorem.sentence())
 }
+
 
 // generate random apartments
 function host_neighborhood(index) {
@@ -156,7 +163,7 @@ function host_neighborhood(index) {
     'min': 10,
     'max': 100
   });
-  this.avatar = `http://lorempixel.com/640/480/cats/`;
+  this.avatar = `http://lorempixel.com/640/480/cats/`; // renders random image 
   this.responseTime = responceTimes[Math.floor(Math.random() * responceTimes.length)];
   this.languages = faker.random.locale();
   this.email = faker.internet.email();
@@ -168,9 +175,10 @@ function host_neighborhood(index) {
   this.rules = policies.toString();
   this.isCancelationP = faker.random.boolean();
   this.cancelation = cancelation.toString();
-  this.locationsNearby = faker.lorem.words().toString(
-  )
+  this.locationsNearby = faker.lorem.words().toString()
 }
+
+
 
 db.run(`CREATE TABLE if not exists hosts_neighborhood(
   id INTEGER UNIQUE,
@@ -197,44 +205,42 @@ db.run(`CREATE TABLE if not exists hosts_neighborhood(
   cancelation VARCHAR,
   locationsNearby VARCHAR
 )
-`, (err) => {
-  if (err) console.error(err)
-  else console.log('created the hosts table');
-})
+`,
+
+  (err) => {
+    if (err) console.error(err)
+    else console.log('created the hosts table');
+  })
 
 db.run(`Create table if not exists Messages(
   id INTEGER PRIMARY KEY AUTOINCREMENT, 
   toHost String, 
   messageBody String
-)`, (err) => {
-  if (err) console.error(err);
-  else {
-    console.log('created the Messages table')
-    for (let i = 0; i < 100; i++) {
-      let entry = new host_neighborhood(i);
-      db.run(`INSERT OR IGNORE INTO hosts_neighborhood  (id,name,joined,location,city, numberOfReviews, numberOfReferences, isVerified,isSuper,responseRate,avatar, responseTime,language
+)`,
+
+  (err) => {
+    if (err) console.error(err);
+
+    else {
+      console.log('created the Messages table')
+
+      for (let i = 0; i < 100; i++) {
+        let entry = new host_neighborhood(i); //generates the new object with data to insert into db
+
+        // run function upserts data on initial page load
+        db.run(`INSERT OR IGNORE INTO hosts_neighborhood  (id,name,joined,location,city, numberOfReviews, numberOfReferences, isVerified,isSuper,responseRate,avatar, responseTime,language
          ,email, phoneNum,commuteTimeAvg,commutePriceAvg, localCurrency,neighborhoodDescr,policies,isCanc, cancelation, locationsNearby) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) `, Object.values(entry), (err) => {
-        if (err) console.log(err, 'Error occured on insert')
-        else {
-          console.log('inserted successfully');
-        }
-      })
-    }
-  };
-});
+          if (err) console.log(err, 'Error occured on insert')
 
-// optional: ensures the consistance of the data inserted
+          else {
+            console.log('inserted successfully');
+          }
+        })
+      }
+    };
+  });
+
+// optional: ensures the consistance of the data generated
 faker.seed(193)
-
-
-
-//select * from hosts_neighborhood
-//schema.db
-
-
-// db.close((err) => {
-//   if (err) console.error(err, 'err or on closing the connection ')
-//   else console.log('connection with the db closed ');
-// });
 
 module.exports.db = db;
