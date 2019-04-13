@@ -24,11 +24,11 @@ export class App extends React.Component {
     this.getHost();
   }
 
-  // grabs id from the current URl -- not ideal but works
+  // grabs id from the current url
   getHost() {
     let id = window.location.href.split("/")[3];
     axios
-      .get(`/host/${id}`)
+      .get(`http://ec2-18-220-83-228.us-east-2.compute.amazonaws.com/host/${id}`) // add absolute path to EC2
       .then(host => {
         this.setState(
           {
