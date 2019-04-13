@@ -1,3 +1,0 @@
-
-# host-neighborhood description components
-
