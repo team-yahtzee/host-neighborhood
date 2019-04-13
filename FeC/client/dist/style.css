@@ -22,6 +22,7 @@
 	max-width: 648px;
  }
  .mainDivNeighborhood {
+	font-display: auto;
     max-width: 80%;
 	margin-top: 50px;
 	color: rgb(72, 72, 72);
@@ -54,6 +55,7 @@
 
 
 .hostedBy {
+	font-display: auto;
 	margin: 0px;
 	word-wrap: break-word;
 	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
@@ -91,6 +93,7 @@
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 1.375em;
+	font-display: auto;
 }
 
 
@@ -121,6 +124,7 @@
 	font-weight: 400;
 	line-height: 1.375em;
 	color: #484848;
+	font-display: auto;
 }
 
 .quickInfoAboutHost{
@@ -131,7 +135,8 @@
     font-size: 16px;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
-    line-height: 12px;
+	line-height: 12px;
+	font-display: auto;
 }
 
 .mostOfTheTextOnPage {
@@ -142,6 +147,7 @@
 	font-weight: 400;
 	line-height: 1.375em;
 	color: #484848;
+	font-display: auto;
 }
 
 .linkToLearnMore{
@@ -152,7 +158,8 @@
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 1.375em;
-    text-decoration: none
+	text-decoration: none;
+	font-display: auto;
 }
 
 .linkToLearnMore:visited{
@@ -175,6 +182,7 @@
 	background: transparent;
 	border-color: #008489;
 	color: #008489;
+	font-display: auto;
 }
 
 .divAroundContactButton {
@@ -200,6 +208,7 @@
 	font-size: 16px;
 	font-weight: 400;
 	-webkit-font-smoothing: antialiased;
+	font-display: auto;
 }
 
 .showMoreOrLess {
@@ -209,6 +218,7 @@
 	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
 	font-size: 16px;
 	font-weight: 400;
+	font-display: auto;
 	line-height: 1.375em;
 }
 
@@ -244,7 +254,8 @@
 	line-height: 1.375em;
 	color: #d1d1d1;
 	background-color: #008489;
-	list-style-type: none
+	list-style-type: none;
+	font-display: auto;
 }
 
 .closeChat {
@@ -261,6 +272,7 @@
 	font-size: 10px;
 	font-weight: 300;
 	line-height: 1.375em;
+	font-display: auto;
 }
 
 form {
@@ -277,6 +289,7 @@ form {
 	font-weight: 400;
 	line-height: 1.375em;
 	height: 25px;
+	font-display: auto;
 }
 
 .inputForMessageToSend {

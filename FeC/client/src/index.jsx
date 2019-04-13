@@ -22,6 +22,7 @@ export class App extends React.Component {
 
   componentDidMount() {
     this.getHost();
+    document.addEventListener('mousewheel', {passive: true});
   }
 
   // grabs id from the current url
