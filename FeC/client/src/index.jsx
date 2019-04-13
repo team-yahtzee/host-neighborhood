@@ -28,7 +28,7 @@ export class App extends React.Component {
   getHost() {
     let id = window.location.href.split("/")[3];
     axios
-      .get(`http://ec2-18-220-83-228.us-east-2.compute.amazonaws.com/host/${id}`) // add absolute path to EC2
+      .get(`/host/${id}`) // add absolute path to EC2 for deployment
       .then(host => {
         this.setState(
           {
