@@ -1,17 +1,18 @@
 {
   "name": "host-neighborhood",
+
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start server/index.js && webpack -d --watch",
-    "stop": "pm2 stop server/index.js"
+    "start": "webpack -p && pm2 start server/index.js ",
+    "stop":  "pm2 stop server/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/team-scott/host-neighborhood.git"
   },
-  "author": "",
+  "author": "Kirill Chernik",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/team-scott/host-neighborhood/issues"
@@ -26,6 +27,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "body-parser": "^1.18.3",
+    "compression-webpack-plugin": "^2.0.0",
     "cors": "^2.8.5",
     "css-loader": "^2.1.1",
     "express": "^4.16.4",

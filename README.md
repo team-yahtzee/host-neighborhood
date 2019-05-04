@@ -27,7 +27,7 @@ To stop the application:
  run ` npm stop `
 
 
-## Integrating:
+## Deployment:
 
 1. When in ssh, navigate to repository, outside main folder create a config file with the api key
 2. Check if the axios requests go to absolute path :
@@ -35,4 +35,6 @@ To stop the application:
 - '/chat.jsx': get- and postMessages methods
 - '/index.jsx': getHost method 
 
+## API:
 
+In order to use google maps API, you will need to get an API key. You may find more information on that here: https://developers.google.com/maps/documentation/
