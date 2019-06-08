@@ -1,12 +1,11 @@
 const express = require('express')
-const db = require('../db/index.js').db
+const { db } = require('../db/index.js')
 const parser = require('body-parser')
 const path = require('path')
 const cors = require('cors');
-const compression = require('compression-webpack-plugin')
-const getHostsById = require('../db/dbHelpers.js').getHostsById
-const postMessageToHost = require('../db/dbHelpers.js').postMessageToHost
-const getMessagehistrory = require('../db/dbHelpers.js').getMessagehistrory
+// const getHostsById = require('../db/dbHelpers.js').getHostsById
+// const postMessageToHost = require('../db/dbHelpers.js').postMessageToHost
+// const getMessagehistrory = require('../db/dbHelpers.js').getMessagehistrory
 
 // set up header to prevent CORS errors and use in middleware
 const headers = {
@@ -28,7 +27,6 @@ app.get('*.js', function (req, res, next) {
 
 app.use(parser.json())
 app.use(cors(headers))
-app.use(compression())
 
 app.use('/:id', express.static(path.join(__dirname, '../client/dist')));
 
