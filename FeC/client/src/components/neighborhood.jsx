@@ -190,7 +190,7 @@ class Neighborhood extends React.Component {
 
 
             <h3>Cancellations</h3>
-             {/* bellow checks whether host has strict cancelation rules */}
+             {/* below checks whether host has strict cancellation rules */}
             {this.props.host.isCanc ? (
 
               <div>

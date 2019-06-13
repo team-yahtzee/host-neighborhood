@@ -54,7 +54,9 @@
     "seraph": "^0.15.3",
     "sqlite3": "^4.0.6",
     "style-loader": "^0.23.1",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "webpack": "^4.29.6"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.3"
   }
 }

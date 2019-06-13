@@ -3,9 +3,11 @@ const { connect } = require('./index.js')
 const string = require('../config.js').PG_CONNECT
 const async = require('async')
 const { data, createHostsTable } = require('./data.js')
+
 const pgp = require('pg-promise')({
   capSQL: true
 })
+
 const db = pgp(string)
 const knex = require('knex')({
   client: 'pg',
@@ -13,8 +15,8 @@ const knex = require('knex')({
 })
 
 
-// creates table - comment out to re-create table
-// createHostsTable()
+creates table - comment out to re-create table
+createHostsTable()
 
 // our set of columns, to be created only once, and then shared/reused,
 // to let it cache up its formatting templates for high performance:
@@ -51,6 +53,7 @@ const insert = (callback) => {
 
 console.log('Starting seed...')
 console.time('Seeding')
+
 async.whilst(
   (callback) => {
     return callback(null, counter < 10000000)

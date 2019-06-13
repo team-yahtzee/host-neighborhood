@@ -20,7 +20,7 @@ let postMessageToHost = (host, message, callback) => {
 	})
 }
 
-let getMessagehistrory = (host, callback) => {
+let getMessageHistory = (host, callback) => {
 	db.all(` select * from messages where toHost Like "${host}"`, (err, data) => {
 		if (err) callback(err)
 		callback(data)
@@ -28,4 +28,4 @@ let getMessagehistrory = (host, callback) => {
 }
 module.exports.getHostsById = getHostsById;
 module.exports.postMessageToHost = postMessageToHost;
-module.exports.getMessagehistrory = getMessagehistrory;
+module.exports.getMessageHistory = getMessageHistory;

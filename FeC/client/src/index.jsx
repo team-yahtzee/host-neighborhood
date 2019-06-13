@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-import { key } from "../../../config.js";
+import { key } from "../../config.js";
 
 import Host from "./components/host.jsx";
 import Neighborhood from "./components/neighborhood.jsx";

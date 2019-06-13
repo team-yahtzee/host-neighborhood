@@ -3,9 +3,9 @@ const { db } = require('../db/index.js')
 const parser = require('body-parser')
 const path = require('path')
 const cors = require('cors');
-// const getHostsById = require('../db/dbHelpers.js').getHostsById
-// const postMessageToHost = require('../db/dbHelpers.js').postMessageToHost
-// const getMessagehistrory = require('../db/dbHelpers.js').getMessagehistrory
+const getHostsById = require('../db/dbHelpers.js').getHostsById
+const postMessageToHost = require('../db/dbHelpers.js').postMessageToHost
+const getMessageHistory = require('../db/dbHelpers.js').getMessagehistory
 
 // set up header to prevent CORS errors and use in middleware
 const headers = {
@@ -17,26 +17,27 @@ const headers = {
 
 const app = express()
 
-app.get('*.js', function (req, res, next) {
-  console.log('js requested');
-  req.url = req.url + '.gz';
-  res.set('Content-Encoding', 'gzip');
-  res.set('Content-Type', 'text/javascript');
-  next();
-});
+// app.get('*.js', function (req, res, next) {
+//   console.log('js requested');
+//   req.url = req.url + '.gz';
+//   res.set('Content-Encoding', 'gzip');
+//   res.set('Content-Type', 'text/javascript');
+//   next();
+// });
 
 app.use(parser.json())
 app.use(cors(headers))
 
+app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use('/:id', express.static(path.join(__dirname, '../client/dist')));
 
 // gets all the data from the database on corresponding user id from request params 
 app.get(`/host/:id`, (req, res) => {
-  let id = JSON.stringify(req.params.id)
+  let id = JSON.stringify(req.params.id) || 1
   
   getHostsById(id, (err, data) => {
     if (err) {
-      console.error(err, `<-- Error occured on retreiving all the hosts from db`);
+      console.error(err, `<-- Error occured on retrieving all the hosts from db`);
       res.status(500)
     } else {
       res.send(data)
@@ -63,7 +64,7 @@ app.get('/contact/:host/message', (req, res) => {
 
   let host = '%' + req.params.host.split(' ').join('%') + '%'
 
-  getMessagehistrory(host, (err, data) => {
+  getMessageHistory(host, (err, data) => {
     if (err) {
       console.error(err, ' <-- Error occured on getting message history');
       res.sendStatus(500)

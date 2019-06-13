@@ -7,7 +7,7 @@ MongoClient.connect(url, function(err, client) {
   if(err) throw err
   console.log("Connected successfully to server");
 
-  const db = client.db('airbnb');
+  const db = client.db('air');
 
   const collection = db.collection('hosts');
   
@@ -32,13 +32,16 @@ MongoClient.connect(url, function(err, client) {
     console.time('Seeding')
     async.whilst(
       (callback) => {
-        return callback(null, counter < 10000000)
+        return callback(null, counter < 5000000)
       },
       (callback) => {
         insert(() => {
           counter += 1000
+          if(counter % 1000000 === 0) {
+            console.log('million inserted!')
+          }
           callback(null, counter)
-          if(counter === 10000000) {
+          if(counter === 5000000) {
             console.timeEnd('Seeding')
             console.log('Seed complete!')
           }
