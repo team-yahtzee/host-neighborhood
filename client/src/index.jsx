@@ -67,7 +67,7 @@ export class App extends React.Component {
         {console.log(this.state)}
         <Host host={this.state.host} />
         <br />
-        <Neighborhood host={this.state.host} location={this.state.location} />
+        <Neighborhood host={this.state.host} latitude={this.state.latitude} longitude={this.state.longitude} />
       </div>
     )
   }

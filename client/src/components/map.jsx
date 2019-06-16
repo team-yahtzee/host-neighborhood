@@ -9,7 +9,10 @@ class MapContainer extends React.Component {
   }
   // returns simple google map 
   render() {
-    let coords = this.props.location;
+    let coords = {
+      lat: this.props.latitude,
+      lng: this.props.longitude
+    }
     return (
       <div className="mapContainer">
         <GoogleMapReact
