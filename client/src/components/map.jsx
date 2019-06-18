@@ -1,5 +1,5 @@
 // import  GoogleMapReact from 'google-map-react';
-import { key } from '../../../config.js' 
+import { key } from '../../../config.js'
 import React from "react";
 import GoogleMapReact from "google-map-react";
 
@@ -9,10 +9,7 @@ class MapContainer extends React.Component {
   }
   // returns simple google map 
   render() {
-    let coords = {
-      lat: this.props.latitude,
-      lng: this.props.longitude
-    }
+    let coords = this.props.location;
     return (
       <div className="mapContainer">
         <GoogleMapReact

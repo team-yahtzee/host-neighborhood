@@ -153,6 +153,8 @@ class Neighborhood extends React.Component {
               <MapContainer
                 className="mapContainer"
                 location={this.props.location}
+                longitude={this.props.longitude}
+                latitude={this.props.latitude}
               />
             </Suspense>
           </div>

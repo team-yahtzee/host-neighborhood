@@ -1,5 +1,5 @@
 // real addresses used here to access google maps api
-const adresses = [
+const addresses = [
   '777 Brockton Avenue Abington MA 2351',
   '30 Memorial Drive Avon MA 2322',
   '250 Hartford Avenue Bellingham MA 2019',
@@ -135,7 +135,7 @@ for (let i = 0; i < 4; i++) {
 }
 
 
-//generate random sentences for cancelation
+//generate random sentences for cancellation
 let cancelation = []
 for (let i = 0; i < 4; i++) {
   cancelation.push(faker.lorem.sentence())
@@ -223,7 +223,7 @@ db.run(`Create table if not exists Messages(
 
         // run function upserts data on initial page load
         db.run(`INSERT OR IGNORE INTO hosts_neighborhood  (id,name,joined,location,city, numberOfReviews, numberOfReferences, isVerified,isSuper,responseRate,avatar, responseTime,language
-         ,email, phoneNum,commuteTimeAvg,commutePriceAvg, localCurrency,neighborhoodDescr,policies,isCanc, cancelation, locationsNearby) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) `, Object.values(entry), (err) => {
+        ,email, phoneNum,commuteTimeAvg,commutePriceAvg, localCurrency,neighborhoodDescr,policies,isCanc, cancelation, locationsNearby) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) `, Object.values(entry), (err) => {
           if (err) console.log(err, 'Error occured on insert')
 
           else {

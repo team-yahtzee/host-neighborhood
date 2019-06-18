@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-import { key } from "../../config.js";
+import { key } from "../../config.js"
 
 import Host from "./components/host.jsx";
 import Neighborhood from "./components/neighborhood.jsx";
@@ -17,7 +17,7 @@ export class App extends React.Component {
       showChat: false
     };
     this.getHost = this.getHost.bind(this);
-    this.getProperAddress = this.getProperAddress.bind(this);
+    // this.getProperAddress = this.getProperAddress.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +34,8 @@ export class App extends React.Component {
       .then(host => {
         this.setState({
           host: host.data 
+        }, () => {
+          this.setState({location: this.state.host.location})
         });
       })
       .catch(err => {
@@ -43,23 +45,26 @@ export class App extends React.Component {
 
 
   // from the input like '123 street-name ...'  return the address in coordinates
-  getProperAddress(address) {
-    axios
-      .get(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${address
-          .split(" ")
-          .join("+")}
-          &key=${key}`
-      )
-      .then(result => {
-        this.setState({
-          location: result.data.results[0].geometry.location
-        });
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  }
+  // getProperAddress() {
+  //   let address = this.state.location
+  //   let parsedAddress = address.split(' ').join('+')
+  //   axios
+  //     .get(
+  //       `https://maps.googleapis.com/maps/api/geocode/json?address=${address
+  //         .split(" ")
+  //         .join("+")}
+  //         &key=${key}`
+  //     )
+  //     .then(result => {
+  //       console.log(result)
+  //       this.setState({
+  //         location: result.data.results[0].geometry.location
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //     });
+  // }
 
   render() {
     return (
@@ -67,7 +72,8 @@ export class App extends React.Component {
         {console.log(this.state)}
         <Host host={this.state.host} />
         <br />
-        <Neighborhood host={this.state.host} latitude={this.state.latitude} longitude={this.state.longitude} />
+        <Neighborhood host={this.state.host} location={this.state.location}
+        latitude={this.state.host.latitude} longitude={this.state.host.longitude} />
       </div>
     )
   }

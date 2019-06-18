@@ -1,10 +1,9 @@
 const express = require('express')
-const { collection } = require('../db/index.js')
 const parser = require('body-parser')
 const path = require('path')
 const cors = require('cors')
 
-const { getHostInformation } = require('../db/index.js')
+const { getHostInformation, sendMessage, getMessageHistory } = require('../db/methods.js')
 
 // set up header to prevent CORS errors and use in middleware
 const headers = {
@@ -13,7 +12,6 @@ const headers = {
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
   'Access-Control-Allow-Headers': 'Content-Type'
 }
-
 const app = express()
 
 // app.get('*.js', function (req, res, next) {
@@ -40,7 +38,7 @@ app.use('/:id', express.static(path.join(__dirname, '../client/dist')));
 // gets all the data from the database on corresponding user id from request params 
 app.get(`/host/:id`, (req, res) => {
   let id = req.params.id
-  getHostInformation(Number(id), (err, data) => {
+  getHostInformation(id, (err, data) => {
     if(err) {
       console.error('ERROR OCCURRED: ', err)
       res.sendStatus(500)
@@ -56,17 +54,12 @@ app.post('/contact/:host/message', (req, res) => {
 
   let host = JSON.stringify(req.params.host.split('+').join(' '))
 
-  postMessageToHost(host, req.body.messageBody, (err) => {
+  sendMessage(host, req.body.messageBody, (err) => {
     if (err) {
       console.error(err, ' <-- Error occured on sending a message to host');
       res.sendStatus(500)
     } else res.sendStatus(201)
   })
-})
-
-app.put('/host/:id', (req, res) => {
-  let id = req.params.id || 1
-  d
 })
 
 // retrieves the message history with the given host 
